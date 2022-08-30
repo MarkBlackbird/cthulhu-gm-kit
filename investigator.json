@@ -1,0 +1,32 @@
+{
+    "name": "Tom Clance",
+    "player": "Paweł",
+    "job": "Detektyw",
+    "age": 45,
+    "gender": "M",
+    "place_of_residence": "Olsztyn",
+    "place_of_birth": "Chicago",
+    "characteristics": {
+        "strength": 25,
+        "dexterity": 75,
+        "power": 50,
+        "condition": 40,
+        "appearance": 60,
+        "education": 30,
+        "size": 80,
+        "intelligence": 80
+    },
+    "statuses": {
+        "hit_points": 14,
+        "magic_points": 6,
+        "luck": 40,
+        "sanity": 60,
+        "move": 7,
+        "build": 1,
+        "dodge": 37,
+        "damage_bonus": "1k4"
+    },
+    "abilities": {
+        "natural_world": 50
+    }
+}

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head'); %>
+  <script src="../scripts/reveal.js"></script>
+</head>
+<body class="container">
+
+<header>
+  <%- include('../partials/header'); %>
+</header>
+
+
+
+<main>
+  <div>
+    <h1>FGO servants</h1>
+    <div class="top_bar">
+      <div class="personal_data">
+        <p>Dane Osobowe</p>
+        <table>
+          <tr><td>Imię i Nazwisko</td><td><%=investigator.name%></td></tr>
+          <tr><td>Gracz</td><td><%=investigator.player%></td></tr>
+          <tr><td>Zawód</td><td><%=investigator.job%></td></tr>
+          <tr><td>Wiek</td><td><%=investigator.age%></td><td>Płeć</td><td><%=investigator.gender%></td></tr>
+          <tr><td>Miejsce Zamieszkania</td><td><%=investigator.place_of_residence%></td></tr>
+          <tr><td>Miejsce Urodzenia</td><td><%=investigator.place_of_birth%></td></tr>
+        </table>
+      </div>
+      <div class="characteristics">
+        <p>Cechy</p>
+        <table>
+          <tr>
+            <td>S</td><td><%=investigator.characteristics.strength%></td>
+            <td>ZR</td><td><%=investigator.characteristics.dexterity%></td>
+          </tr>
+          <tr>
+            <td>MOC</td><td><%=investigator.characteristics.power%></td>
+            <td>KON</td><td><%=investigator.characteristics.condition%></td>
+          </tr>
+          <tr>
+            <td>WYG</td><td><%=investigator.characteristics.appearance%></td>
+            <td>WYK</td><td><%=investigator.characteristics.education%></td>
+          </tr>
+          <tr>
+            <td>BC</td><td><%=investigator.characteristics.size%></td>
+            <td>INT</td><td><%=investigator.characteristics.intelligence%></td>
+          </tr>
+        </table>
+      </div>
+      <div class="statuses">
+        <p>Cechy</p>
+        <table>
+          <tr>
+            <td>PW</td><td><%=investigator.statuses.hit_points%></td>
+            <td>RUCH</td><td><%=investigator.statuses.move%></td>
+          </tr>
+          <tr>
+            <td>PM</td><td><%=investigator.statuses.magic_points%></td>
+            <td>Krzepa</td><td><%=investigator.statuses.build%></td>
+          </tr>
+          <tr>
+            <td>Szczęście</td><td><%=investigator.statuses.luck%></td>
+            <td>Unik</td><td><%=investigator.statuses.dodge%></td>
+          </tr>
+          <tr>
+            <td>Poczytalność</td><td><%=investigator.statuses.sanity%></td>
+            <td>MO</td><td><%=investigator.statuses.damage_bonus%></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="icon_div"></div>
+    <div class="main_bar">
+      <div class="abilities">
+        <table>
+          <%
+            let count = 0;
+            let row_length = 6;
+            let second_row = [];
+          %>
+          <%for(var ability of abilities){%>
+            <%if(!ability.required && !investigator.abilities[ability]) continue;%>
+            <%if(count % row_length == 0){%>
+              <tr>
+              <%second_row = [];%>
+            <%}%>
+            <%let investigator_value = investigator.abilities[ability.name] || (investigator.characteristics[ability.base_value] || ability.base_value);%>
+            <td rowspan="2"><%=ability.pl_name%></td><td rowspan="2"><%=investigator_value%></td><td><%=Math.floor(investigator_value / 2)%></td>
+            <%
+            second_row.push(ability);
+            %>
+            <%if((count % row_length == row_length - 1) || (ability === abilities[abilities.length - 1])){%>
+            </tr>
+            <tr>
+              <%for(var ability of second_row){%>
+                <td><%=Math.floor(investigator_value / 5)%></td>
+              <%}%>
+            </tr>
+            <%}%>
+            <%count++;%>
+          <%}%>
+        </table>
+      </div>
+      <div class="icon_div"></div>
+      <div class="fighting">
+        <div class="weapons">
+        </div>
+        <div class="fight_modifiers">
+        </div>
+      </div>
+    </div>
+    <div class="desc_tab">
+      <div class="investigator_history">
+      </div>
+      <div class="equipment">
+      </div>
+      <div class="money">
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <%- include('../partials/footer'); %>
+</footer>
+
+</body>
+</html>
